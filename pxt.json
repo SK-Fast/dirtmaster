@@ -1,0 +1,23 @@
+{
+    "name": "DirtMaster",
+    "description": "",
+    "dependencies": {
+        "core": "*",
+        "radio": "*",
+        "microphone": "*",
+        "ESP01 WiFi Module": "github:meekimobile/pxt-esp01-wifi-module#d1453ae9c824658825e3a51aba8fb2ddb8306500"
+    },
+    "files": [
+        "main.blocks",
+        "main.ts",
+        "README.md",
+        "main.py"
+    ],
+    "testFiles": [
+        "test.ts"
+    ],
+    "supportedTargets": [
+        "microbit"
+    ],
+    "preferredEditor": "pyprj"
+}
