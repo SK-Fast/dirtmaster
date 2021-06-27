@@ -1,5 +1,41 @@
-def on_forever():
-    pass
-basic.forever(on_forever)
+#Variables
+api = "rUZxDJGJOUHcd1Tby5sRuQADsRwXLAZ7"
+delay = 5
 
-WifiModule.setup_wifi(SerialPin.P0, SerialPin.P0, "mSPACE", "18871008")
+
+delay = delay * 1000
+basic.show_leds("""
+    . . . . .
+    . . . . .
+    # . # . #
+    . . . . .
+    . . . . .
+    """)
+WifiModule.setup_wifi(SerialPin.P13, SerialPin.P12, "mSPACE", "18871008")
+
+def on_forever():
+    if WifiModule.is_connected():
+        basic.show_leds("""
+            . . . . .
+            . . . . #
+            . . . # .
+            # . # . .
+            . # . . .
+            """)
+        basic.pause(delay)
+        readforce = WifiModule.read_blynk_pin_value(api, "V1")
+        if readforce == "1":
+            pins.digital_read_pin(DigitalPin.P1)
+        basic.pause(delay)
+        readmositure = pins.analog_read_pin(AnalogPin.P2)
+        WifiModule.write_blynk_pin_value(api, "V0", str(readmositure))
+        basic.pause(delay)
+    else:
+        basic.show_leds("""
+            . . . . .
+            . . . . .
+            # . # . #
+            . . . . .
+            . . . . .
+            """)
+basic.forever(on_forever)
